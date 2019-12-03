@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h2>Editar activo: #{{activo.TAid}} {{activo.nombre}}</h2>
+
+	<form action="" method="post">{% csrf_token %}
+		{{form.as_p}}
+		<input type="submit" value="Actualizar" class="btn btn-warning font-weight-bold" />
+	</form>
+		
+
+{% endblock content %}

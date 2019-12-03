@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h2>¿Está Seguro que Desea eliminar #{{activo.TAid}} {{activo.nombre}}?</h2>
+
+	<form action="" method="post">{% csrf_token %}
+		<input type="submit" value="Eliminar" class="btn btn-danger font-weight-bold" />
+	</form>
+		
+
+{% endblock content %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{%block content%}
+<h2>Registrar Activo</h2>
+<div class="izq">
+	
+</div>
+<form action="" method="post">{% csrf_token %}
+	{{form.as_p}}
+	<input type="submit" value="Guardar" class="btn btn-success">
+	<a href="{% url 'tipoact' %}" id="nuevoact" class="btn btn-secondary sep font-weight-bold">Cancelar</a>
+</form>
+{%endblock content%}

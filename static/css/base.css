@@ -1,0 +1,60 @@
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+}
+header{
+	background: black;
+}
+.subhead{
+	color: white;
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	width: 90%;
+	margin: auto;
+}
+.tab{
+	padding-top: 2%;
+}
+tr th, tr td{
+	text-align: center;
+}
+.nave{
+	display: flex;
+	justify-content: space-around;
+	align-self: center;
+	text-decoration: none;
+	color: white;
+}
+a{
+	text-decoration: none;
+	color: white;
+}
+a:hover{
+	text-decoration: none;
+	color: #04A5A0;
+	font-weight: 900;
+}
+#nuevoact{
+	color: white;
+}
+#nuevoact:hover{
+	color: #fff;
+}
+.izq{
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: .5%;
+}
+.link{
+	color: black;
+}
+.sep{
+	margin-left: .5%;
+}
+/*
+Colores para SGR
+Grave #F8696B
+Medio #E9E583
+Leve #63BE7B
+*/
