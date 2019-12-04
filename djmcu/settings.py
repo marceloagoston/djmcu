@@ -31,8 +31,12 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    #localapps
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
+    #3rd party apps
+    'crispy_forms',
+    #djangoapps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -124,3 +128,5 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+# porqueusobootstrap
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

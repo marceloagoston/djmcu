@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block title %}Registro{% endblock title %}
 {% block content %}
 //despues ocultar este form o que solo el SUAdm pueda verlo y decorarlo mejor
 	<h2>Registro</h2>
 	<form method="post">
 		{% csrf_token %}
-		{{ form.as_p }}
+		{{ form|crispy }}
 		<button type="submit" class="btn btn-success">Registro</button>
 	</form>
 {% endblock content %}
