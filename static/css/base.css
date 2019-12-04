@@ -21,7 +21,7 @@ tr th, tr td{
 }
 .nave{
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-evenly;
 	align-self: center;
 	text-decoration: none;
 	color: white;
@@ -52,6 +52,34 @@ a:hover{
 .sep{
 	margin-left: .5%;
 }
+
+/*bootstrapoverride*/
+.btn-secondary {
+    color: #fff;
+	background-color:#000;
+	border-color:#000;
+	padding-bottom: 0;
+	padding-top: 0;
+}
+.btn-secondary:hover {
+    color: #04A5A0;
+	background-color:#000;
+	border-color:#000;
+	font-weight: 900;
+}
+.show > .btn-secondary.dropdown-toggle {
+    color: #fff;
+	background-color:#000;
+	border-color:#000;
+}
+.show > .btn-secondary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .2rem rgba(0,0,0,.5);
+}
+.dropdown-menu{
+	background-color: #000;
+	text-align: center;
+}
+
 /*
 Colores para SGR
 Grave #F8696B
