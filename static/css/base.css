@@ -50,6 +50,9 @@ a:hover{
 .link{
 	color: black;
 }
+.neg{
+	font-weight: 900;
+}
 .sep{
 	margin-left: .5%;
 }
