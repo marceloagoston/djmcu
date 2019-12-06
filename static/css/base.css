@@ -3,8 +3,11 @@
 	padding: 0;
 	text-decoration: none;
 }
+body{
+	background-color: #eff1f2;
+}
 header{
-	background: black;
+	background: rgba(0,0,0,.8);
 	margin-bottom: 2%;
 }
 .subhead{
@@ -81,6 +84,31 @@ a:hover{
 }
 .dropdown-menu{
 	background-color: #000;
+	text-align: center;
+}
+.logform{
+	display: flex;
+	flex-direction: column;
+	width: 30vw;
+	min-width: 200px;
+	margin: auto;
+	padding-top: 7% !important;
+}
+.box{
+	border-radius: 0;
+	box-shadow: 0 1px 3px rgba(0,0,0,.3);
+	background-color: #fff;
+	width: 50%;
+	margin: auto;
+}
+
+/* clases simples */
+.pad3{
+	padding: 3%;
+}
+
+/*Trabajo con texto*/
+.tcen{
 	text-align: center;
 }
 

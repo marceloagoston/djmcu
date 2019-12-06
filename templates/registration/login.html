@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {%block content%}
-	<h2>Iniciar Sesión</h2>
-	<form method="post">
-		{%csrf_token%}
-		{{ form|crispy }}
-		<p>*campos obligatorios</p>
-		<button type="submit" class="btn btn-success">Iniciar Sesión</button>
-
-	</form>
+	
+	<div class="box pad3">
+		<h2 class="tcen">Iniciar Sesión</h2>
+		<form method="post" class="logform pad3">
+			{%csrf_token%}
+			{{ form|crispy }}
+			<p>*campos obligatorios</p>
+			<button type="submit" class="btn btn-success">Iniciar Sesión</button>
+		</form>
+	</div>
 {%endblock content%}
