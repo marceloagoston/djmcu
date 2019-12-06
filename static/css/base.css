@@ -111,8 +111,17 @@ a:hover{
 .tcen{
 	text-align: center;
 }
-.negro{
+.cnegro{
 	color: #000;
+}
+.icono{
+	font-size: 1.5rem;
+}
+.crojo{
+	color: #F00;
+}
+.camarillo{
+	color: #BF9500;
 }
 
 /*

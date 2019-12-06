@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
 {%block content%}
+	<div class="izq">
+		<a href="{% url 'editar_activo' activo.TAid %}" class="btn btn-warning sep font-weight-bold"><i class="far fa-edit"></i> Editar</a>
+		<a href="{% url 'eliminar_activo' activo.TAid %}" class="btn btn-danger sep font-weight-bold"><i class="fas fa-minus-circle"></i> Eliminar</a>
+		<a href="{% url 'lista_activos' %}" class="btn btn-dark sep font-weight-bold"><i class="fas fa-arrow-circle-left"></i> Volver a Lista de Activos</a>
+	</div>
 	<h2>#{{activo.TAid}} {{activo.nombre}}</h2>
 	
 	<div>
@@ -14,8 +19,6 @@
 		<p>{{activo.date}}</p>
 	</div>
 	
-	<p><a href="{% url 'editar_activo' activo.TAid %}">Editar</a> |
-	<a href="{% url 'eliminar_activo' activo.TAid %}">Eliminar</a></p>
-	<p>Volver a <a href="{% url 'lista_activos' %}">Lista de Activos</a>.</p>
+	
 		
 {%endblock content%}
