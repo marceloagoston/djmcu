@@ -2,11 +2,7 @@
 
 {%block content%}
 	<h2>#{{activo.TAid}} {{activo.nombre}}</h2>
-	<div class="izq">
-		<a href="{% url 'editaract' activo.TAid %}" id="nuevoact" class="btn btn-success sep font-weight-bold"><i class="far fa-edit"></i> Editar Activo</a>
-		<a href="{% url 'eliminaract' activo.TAid %}" id="nuevoact" class="btn btn-danger sep font-weight-bold"><i class="fas fa-minus-circle"></i> Eliminar Activo</a>
-		<a href="{% url 'tipoact' %}" id="nuevoact" class="btn btn-secondary sep font-weight-bold">Cancelar</a>
-	</div>
+	
 	<div>
 		<p>Responsable de Seguridad: {{activo.rs}}<p>
 		<p>Tipo de Activo: {{activo.tipoactivo}}</p>
@@ -15,8 +11,11 @@
 		<p>Propietario del Activo: {{activo.propietario}}</p>
 		<p>Ubicación del Activo: {{activo.ubicacion}}</p>
 		<p>Valor de Riesgo del activo: {{activo.valor}}</p>	
+		<p>{{activo.date}}</p>
 	</div>
 	
-
-	
+	<p><a href="{% url 'editar_activo' activo.TAid %}">Editar</a> |
+	<a href="{% url 'eliminar_activo' activo.TAid %}">Eliminar</a></p>
+	<p>Volver a <a href="{% url 'lista_activos' %}">Lista de Activos</a>.</p>
+		
 {%endblock content%}

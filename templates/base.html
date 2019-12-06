@@ -19,7 +19,7 @@
 				{% if user.is_authenticated %}
 					<!-- el de abajo deberia ser tipo de activos y adentro de cada tipo de activo estar listado los activos asi como lo veo ahora -->
 					<!-- aca abajo va tipoact -->
-					<a href="{% url 'home' %}">Activos</a>
+					<a href="{% url 'lista_activos' %}">Activos</a>
 					<div class="dropdown">	
 					  	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					    <i class="far fa-user"></i> {{user.username}}

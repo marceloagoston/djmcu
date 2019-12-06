@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     #localapps
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
+    'activos.apps.ActivosConfig',
     #3rd party apps
     'crispy_forms',
     #djangoapps

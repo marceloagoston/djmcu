@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}Activos{% endblock title %}
+{% block content %}
+	
+<h2>Activos</h2>
+<div class="izq">
+	<!-- reemplzar home por nuevoact -->
+	<a href="{% url 'home' %}" id="nuevoact" class="btn btn-success"><i class="fas fa-plus-circle"></i> Nuevo Activo</a>	
+</div>
+
+<ul>
+		<table class="table">
+		  <thead>
+		    <tr>
+		      <th scope="col">#ID</th>
+		      <th scope="col">Resp. Seguridad</th>
+		      <!-- Tipo activo puede ser la cabecera de la pagina -->
+		      <th scope="col">Tipo activo </th>
+		      <th scope="col">Nombre</th>
+		      <th scope="col">Descripción</th>
+		      <th scope="col">Propietario</th>
+		      <th scope="col">Ubicación</th>
+		      <th scope="col">Valor</th>
+		      <th scope="col">Fecha Alta</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    {% for activo in activos %}
+		    <tr>
+		    	<!-- reemplazar home por activo detail -->
+		      <th scope="row"><a href="{% url 'editar_activo' activo.TAid %}" class="negro">{{activo.TAid}}</a></th>		      
+		      <td>{{activo.resp_seguridad}}</td>
+		      <td>{{activo.tipoactivo}}</td>
+		      <td>{{activo.nombre}}</a></td>
+		      <td id="desc"><a href="{% url 'editar_activo' activo.TAid %}" class="negro">{{activo.descripcion|truncatewords:10}}</a></td>
+		      <td>{{activo.propietario}}</td>
+		      <td>{{activo.ubicacion}}</td>
+		      <td>{{activo.valor}}</td>
+		      <td>{{activo.date}}</td>
+		    </tr>
+		    {% endfor %}
+		  </tbody>
+		</table>
+</ul>	
+</section>
+
+
+{% endblock content %}
