@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 {%block content%}
 <h2>Registrar Activo</h2>
 <div class="izq">
 	
 </div>
 <form action="" method="post">{% csrf_token %}
-	{{form.as_p}}
+	{{ form|crispy }}
 	<input type="submit" value="Guardar" class="btn btn-success">
-	<a href="{% url 'tipoact' %}" id="nuevoact" class="btn btn-secondary sep font-weight-bold">Cancelar</a>
+	<a href="{% url 'lista_activos' %}" id="nuevoact" class="btn btn-dark sep font-weight-bold">Cancelar</a>
 </form>
 {%endblock content%}

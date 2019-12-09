@@ -24,3 +24,8 @@ class ActivosDeleteView(DeleteView):
 	template_name = 'eliminaractivo.html'
 	success_url = reverse_lazy('lista_activos')
 	context_object_name = 'activo'
+
+class ActivoCreateView(CreateView):
+	model = Activo
+	template_name = 'nuevoact.html'
+	fields = ('resp_seguridad', 'tipoactivo', 'nombre','descripcion','propietario','responsable','ubicacion','valor')

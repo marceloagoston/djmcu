@@ -43,4 +43,7 @@ class Activo(models.Model):
 	def __str__(self):
 		return self.tipoactivo+' '+self.nombre+' '+self.propietario+' '+self.valor
 
+	def get_absolute_url(self):
+		return reverse('lista_activos')
+
 	
