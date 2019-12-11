@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block content%}
+<div class="error">
+		<img src="{% static 'sade-cloudsi.png' %}" class="d-block errorcloudsi"/>
+        <div class="error-code m-b-10 m-t-20">Error 404</div>
+        <h3 class="font-bold">Ops... Parece que no existe la página</h3>
+        <div class="error-desc btn btn-dark">
+                <a class=" login-detail-panel-button btn btnp cblanco" href="{% url 'home' %}">
+                    <i class="fa fa-arrow-left"></i>
+                        Volver al inicio                        
+                </a>
+        </div>
+</div>
+
+{%endblock content%}
