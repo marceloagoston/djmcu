@@ -4,12 +4,27 @@ from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Activo
+from django.views import generic
+from .filters import ActivosFilter
+
+class TipoActivosListView(LoginRequiredMixin ,ListView):
+	model = Activo
+	template_name = 'categorias.html'
+	context_object_name = 'activos'
+	login_url = 'login'
+
 
 class ActivosListView(LoginRequiredMixin, ListView):
 	model = Activo
 	template_name = 'activos_detail.html'
 	context_object_name = 'activos'
 	login_url = 'login'
+	# # aca me faltaria darle un poco mas de logica para no repetir esto N veces para cada filtro
+	# queryset = Activo.objects.filter(tipoactivo='SW')
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['filter'] = ActivosFilter(self.request.GET, queryset=self.get_queryset())
+		return context
 
 class ActivosDetailView(LoginRequiredMixin, DetailView):
 	model = Activo

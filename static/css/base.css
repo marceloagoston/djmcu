@@ -41,7 +41,7 @@ a:hover{
 }
 #nuevoact{
 	color: white;
-}
+	}
 #nuevoact:hover{
 	color: #fff;
 }
@@ -59,6 +59,10 @@ a:hover{
 .sep{
 	margin-left: .5%;
 }
+.cardsep{
+	margin-left: 5%;
+	margin-top: 5%;
+}
 .btnp:hover{
 	color:#04A5A0;
 }
@@ -67,6 +71,28 @@ a:hover{
 	margin: auto;
 	margin-top: -8%;
 }
+.categorias{
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+.filtro{
+	display: flex;
+	justify-content: flex-start;
+}
+	.btn-search{
+		height: calc(1.5em + .75rem + 2px);
+	}
+	.form-group {
+    margin-bottom: 1rem;
+    display: flex;
+    margin-right: 1%;
+    align-items: center;
+	}
+	label {
+    display: inline-block;
+    margin-bottom: .5rem;
+    margin-right: 2%;
+	}
 
 /*bootstrapoverride*/
 .btn-secondary {
@@ -162,6 +188,8 @@ a:hover{
 }
 
 /*
+Colores
+Naranja #EC912D
 Colores para SGR
 Grave #F8696B
 Medio #E9E583

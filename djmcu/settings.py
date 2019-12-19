@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ajb!oa)@k%ylj84ivx)#11q+14q#we46llvh63sae4&&c4azpf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'activos.apps.ActivosConfig',
     #3rd party apps
     'crispy_forms',
+    'bootstrapform',
+    'django_filters',
     #djangoapps
     'django.contrib.admin',
     'django.contrib.auth',

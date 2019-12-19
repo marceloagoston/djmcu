@@ -15,7 +15,7 @@ class Activo(models.Model):
 	tipo = [
     ('SW', 'Software'),
     ('HW', 'Hardware'),
-    ('INF', 'Informació'),
+    ('INF', 'Información'),
     ('RRHH', 'RRHH'),
     ('SC', 'Servicios Contratados'),
 	]

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load bootstrap %}
 {% block title %}Activos{% endblock title %}
 {% block content %}
 	
@@ -6,6 +7,12 @@
 <div class="izq">
 	<!-- reemplzar home por nuevoact -->
 	<a href="{% url 'nuevo_activo' %}" id="nuevoact" class="btn btn-success"><i class="fas fa-plus-circle"></i> Nuevo Activo</a>	
+</div>
+<div class="">
+	<form method="GET" class="filtro">
+		{{filter.form|bootstrap}}
+		<button type="submit" class="btn btn-dark btn-search"><i class="fas fa-search"></i></button>
+	</form>
 </div>
 
 <ul>
@@ -27,7 +34,9 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		    {% for activo in activos %}
+
+		    {% for activo in filter.qs %}
+		    	{% if activo.resp_seguridad == user %}
 		    <tr>
 		    	<!-- reemplazar home por activo detail -->
 		      <th scope="row"><a href="{% url 'detalle_activo' activo.TAid %}" class="cnegro">{{activo.TAid}}</a></th>		      
@@ -42,6 +51,7 @@
 		      <td><a href="{% url 'editar_activo' activo.TAid %}" class="camarillo icono"><i class="far fa-edit"></i></a></td>
 		      <td><a href="{% url 'eliminar_activo' activo.TAid %}" class="crojo icono"><i class="far fa-trash-alt"></i></a></td>
 		    </tr>
+		    	{% endif %}
 		    {% endfor %}
 		  </tbody>
 		</table>
