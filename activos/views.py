@@ -31,6 +31,11 @@ class ActivosDetailView(LoginRequiredMixin, DetailView):
 	template_name = 'activo_detail.html'
 	context_object_name = 'activo'
 	login_url = 'login'
+	def dispatch(self, request, *args, **kwargs): # new
+		obj = self.get_object()
+		if obj.resp_seguridad != self.request.user:
+			raise PermissionDenied
+		return super().dispatch(request, *args, **kwargs)
 
 class ActivosUpdateView(LoginRequiredMixin, UpdateView):
 	model = Activo

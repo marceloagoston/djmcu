@@ -16,7 +16,7 @@
 </div>
 
 <ul>
-		<table class="table">
+		<table class="table table-striped">
 		  <thead>
 		    <tr>
 		      <th scope="col">#ID</th>
@@ -37,20 +37,20 @@
 
 		    {% for activo in filter.qs %}
 		    	{% if activo.resp_seguridad == user %}
-		    <tr>
-		    	<!-- reemplazar home por activo detail -->
-		      <th scope="row"><a href="{% url 'detalle_activo' activo.TAid %}" class="cnegro">{{activo.TAid}}</a></th>		      
-		      <td>{{activo.resp_seguridad}}</td>
-		      <td>{{activo.tipoactivo}}</td>
-		      <td>{{activo.nombre}}</a></td>
-		      <td id="desc"><a href="{% url 'detalle_activo' activo.TAid %}" class="cnegro">{{activo.descripcion|truncatewords:10}}</a></td>
-		      <td>{{activo.propietario}}</td>
-		      <td>{{activo.ubicacion}}</td>
-		      <td>{{activo.valor}}</td>
-		      <td>{{activo.date}}</td>
-		      <td><a href="{% url 'editar_activo' activo.TAid %}" class="camarillo icono"><i class="far fa-edit"></i></a></td>
-		      <td><a href="{% url 'eliminar_activo' activo.TAid %}" class="crojo icono"><i class="far fa-trash-alt"></i></a></td>
-		    </tr>
+					    <tr>
+					    	<!-- reemplazar home por activo detail -->
+					      <th scope="row"><a href="{% url 'detalle_activo' activo.TAid %}" class="cnegro">{{activo.TAid}}</a></th>		      
+					      <td>{{activo.resp_seguridad}}</td>
+					      <td>{{activo.tipoactivo}}</td>
+					      <td>{{activo.nombre}}</a></td>
+					      <td id="desc"><a href="{% url 'detalle_activo' activo.TAid %}" class="cnegro">{{activo.descripcion|truncatewords:10}}</a></td>
+					      <td>{{activo.propietario}}</td>
+					      <td>{{activo.ubicacion}}</td>
+					      <td>{{activo.valor}}</td>
+					      <td>{{activo.date|date:"t/m/Y H:i"}}</td>
+					      <td><a href="{% url 'editar_activo' activo.TAid %}" class="camarillo icono"><i class="far fa-edit"></i></a></td>
+					      <td><a href="{% url 'eliminar_activo' activo.TAid %}" class="crojo icono"><i class="far fa-trash-alt"></i></a></td>
+					    </tr>
 		    	{% endif %}
 		    {% endfor %}
 		  </tbody>

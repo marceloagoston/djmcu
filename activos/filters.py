@@ -6,16 +6,21 @@ class ActivosFilter(django_filters.FilterSet):
 	# CHOICES = (
 
 	# 	('ascending', 'Ascending'),
-	# 	('descending', 'Descending'), 
+	# 	('descending', 'Descending')
 
 	# 	)
 
-	# ordering = django_filters.ChoiceFilter(label='Ordering', choices='CHOICES', method='filter_by_ordering')
+	seleccion = (
+	    ('ascending', 'Mas Antiguo'),
+	    ('descending', 'Mas Nuevo'),
+		)
+
+	ordering = django_filters.ChoiceFilter(label='Ordernar: ', method='filter_by_order', choices=seleccion)
 
 	class Meta:
 		model = Activo
-		fields = ('tipoactivo',)
+		fields =('tipoactivo',)
 
-	# def filter_by_ordering(self, queryset, name, value):
-	# 	expression = 'date' if value == 'ascending' else '-date'
-	# 	return queryset.order_by(expression)	
+	def filter_by_order(self, queryset, name, value):
+		expression = 'date' if value == 'ascending' else '-date'
+		return queryset.order_by(expression)	
