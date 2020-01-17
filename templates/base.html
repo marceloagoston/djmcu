@@ -6,14 +6,14 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://kit.fontawesome.com/7156f13c41.js" crossorigin="anonymous"></script>
-    <link rel="shortcut icon" type="image/png" href="{% static 'favicon-01.png' %}"/>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="shortcut icon" href="{% static 'favicon-01.png' %}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link href="{% static 'css/base.css' %}" rel="stylesheet">
 </head>
 <body>
 	<header>
 		<div class="subhead">
-			<h1><a href="{% url 'home' %}">SGR</a></h1>
+			<h1><a href="{% url 'home' %}"><img src="{% static 'favicon-01.png' %}">SGR</a></h1>
 			<div class="nave">
 				<a href="{% url 'home' %}">Inicio</a>
 				{% if user.is_authenticated %}
