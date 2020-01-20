@@ -11,14 +11,13 @@
 	<link href="{% static 'css/base.css' %}" rel="stylesheet">
 </head>
 <body>
-	<header>
-		<div class="subhead">
+	<header class="">
+		<div class="subhead container">
 			<h1><a href="{% url 'home' %}"><img src="{% static 'favicon-01.png' %}">SGR</a></h1>
+	
 			<div class="nave">
 				<a href="{% url 'home' %}">Inicio</a>
 				{% if user.is_authenticated %}
-					<!-- el de abajo deberia ser tipo de activos y adentro de cada tipo de activo estar listado los activos asi como lo veo ahora -->
-					<!-- aca abajo va tipoact -->
 					<a href="{% url 'lista_activos' %}">Activos</a>
 					<div class="dropdown">	
 					  	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -32,15 +31,39 @@
 					<a href="{% url 'login' %}"><i class="fas fa-sign-out-alt"></i> Iniciar Sesión</a>
 				{% endif %}
 			</div>
+
+			<div class="dropdown dropleft rsp">
+			  <button class="btn btn-secondary " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bars icono"></i>
+			  </button>
+			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			    {% if user.is_authenticated %}
+					<a href="{% url 'lista_activos' %}">Activos</a>
+					  	<a href="{% url 'logout' %}"><i class="far fa-user"></i> {{user.username}}</a>
+					    <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+				{% else %}
+					<a href="{% url 'login' %}"><i class="fas fa-sign-out-alt"></i> Iniciar Sesión</a>
+				{% endif %}
+			  </div>
+			</div>
 		</div>
 	</header>
 
 	
-	<section class="container">
+	<section class="container pw of">
 		{%block content%}
 		{%endblock content%}
 	</section>
 	
+
+	<footer class="footg">
+		<div class="foot container">
+			<div class="inn_foot"><img src="{% static 'img/logo-dgme1.png' %}"></div>
+			<div class="inn_foot mg_3"><img src="{% static 'img/logo-dsti.png' %}"></div>
+			<div class="inn_foot"><img src="{% static 'img/logo-sggc.png' %}"></div>
+			<div class="inn_foot"><img src="{% static 'img/logo-chacogob.png' %}"></div>
+		</div>
+	</footer>
+
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>

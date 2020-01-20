@@ -3,8 +3,14 @@
 	padding: 0;
 	text-decoration: none;
 }
+html{
+	height: 100%;
+}
 body{
 	background-color: #eff1f2;
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
 }
 header{
 	background: rgba(0,0,0,1);
@@ -48,7 +54,7 @@ a:hover{
 .izq{
 	display: flex;
 	justify-content: flex-end;
-	margin-bottom: .5%;
+	margin-bottom: 2%;
 }
 .link{
 	color: black;
@@ -93,6 +99,59 @@ a:hover{
     margin-bottom: .5rem;
     margin-right: 2%;
 	}
+.footg{
+	background-color: black;
+	margin: auto;
+	margin-bottom: 0;
+	width: 100%;
+}
+.foot{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	background-color: black;
+	padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.inn_foot{
+	width: 20%;
+	height: auto;
+	display: flex;
+	justify-content: center;
+	padding-right: 1%;
+}
+.rsp{
+	display: none;
+}
+.of{
+	overflow: auto;
+}
+@media screen and (max-width: 800px) {
+  .foot {
+    flex-direction: column;
+  }
+  .inn_foot{
+  	width: 40%;
+  	padding-top: 2%;
+  	padding-bottom: 2%;
+  }
+  .rsp{
+  	display: flex;
+  	justify-content: flex-end;
+  }
+  .nave{
+  	display: none;
+  }
+
+/*override boots*/
+  .dropdown-menu.show {
+    display: flex;
+    flex-direction: column;
+	background-color:#111;
+}
+
+}
 
 /*bootstrapoverride*/
 .btn-secondary {
@@ -165,6 +224,9 @@ a:hover{
 /* clases simples */
 .pad3{
 	padding: 3%;
+}
+.mg_3{
+	margin-left: -1%;
 }
 
 /*Trabajo con texto*/
