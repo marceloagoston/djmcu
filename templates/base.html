@@ -4,17 +4,22 @@
 <head>
 	<title>SGR</title>
 	<meta charset="utf-8">
+	<!-- js -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://kit.fontawesome.com/7156f13c41.js" crossorigin="anonymous"></script>
+    <script src="{% static 'js/base.js' %}"></script> 
+    <!-- favicon -->
     <link rel="shortcut icon" href="{% static 'favicon-01.png' %}" />
+    <!-- css -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link href="{% static 'css/base.css' %}" rel="stylesheet">
 </head>
 <body>
 	<header class="">
-		<div class="subhead container">
+		<div class="subhead container" id='nav'>
 			<h1><a href="{% url 'home' %}"><img src="{% static 'favicon-01.png' %}">SGR</a></h1>
-	
+			<!-- ver de mejorar esto con js o lo que sea (duplicado) -->
+			<!-- normal -->
 			<div class="nave">
 				<a href="{% url 'home' %}">Inicio</a>
 				{% if user.is_authenticated %}
@@ -31,15 +36,16 @@
 					<a href="{% url 'login' %}"><i class="fas fa-sign-out-alt"></i> Iniciar Sesión</a>
 				{% endif %}
 			</div>
-
+			
+			<!-- resp -->
 			<div class="dropdown dropleft rsp">
 			  <button class="btn btn-secondary " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bars icono"></i>
 			  </button>
-			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			  <div class="dropdown-menu efec" aria-labelledby="dropdownMenuButton">
 			    {% if user.is_authenticated %}
 					<a href="{% url 'lista_activos' %}">Activos</a>
-					  	<a href="{% url 'logout' %}"><i class="far fa-user"></i> {{user.username}}</a>
-					    <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+					<a href="{% url 'logout' %}"><i class="far fa-user"></i> {{user.username}}</a>
+					<a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
 				{% else %}
 					<a href="{% url 'login' %}"><i class="fas fa-sign-out-alt"></i> Iniciar Sesión</a>
 				{% endif %}

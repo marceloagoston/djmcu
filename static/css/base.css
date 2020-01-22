@@ -127,6 +127,9 @@ a:hover{
 .of{
 	overflow: auto;
 }
+.efect{
+	transition: 1200ms ease-in-out;
+}
 @media screen and (max-width: 800px) {
   .foot {
     flex-direction: column;
