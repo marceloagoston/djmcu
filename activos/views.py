@@ -3,9 +3,9 @@ from django.core.exceptions import PermissionDenied
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from .models import Activo
+from .models import Activo, Amenaza
 from django.views import generic
-from .filters import ActivosFilter
+from .filters import ActivosFilter, AmenazasFilter
 
 class TipoActivosListView(LoginRequiredMixin ,ListView):
 	model = Activo
@@ -73,3 +73,15 @@ class ActivoCreateView(LoginRequiredMixin, CreateView):
 	def form_valid(self, form):
 		form.instance.resp_seguridad = self.request.user
 		return super().form_valid(form)
+
+# Vistas Amenazas
+
+class AmenazasListView(LoginRequiredMixin, ListView):
+	model = Amenaza
+	template_name = 'amenazas_detail.html'
+	context_object_name = 'amenazas'
+	login_url = 'login'
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['filter'] = AmenazasFilter(self.request.GET, queryset=self.get_queryset())
+		return context

@@ -41,9 +41,29 @@ class Activo(models.Model):
                   default='1')
 
 	def __str__(self):
-		return 'ID: '+str(self.TAid)+' '+self.tipoactivo+' '+self.nombre+' '+self.propietario+' '+self.valor
+		return 'ID: '+str(self.TAid)+' '+self.nombre
 
 	def get_absolute_url(self):
 		return reverse('lista_activos')
+
+class Amenaza(models.Model):
+	id_Amenaza = models.AutoField(primary_key=True)
+	# Restriccion de Clave con Activos
+	activo = models.ForeignKey(Activo, on_delete=models.CASCADE)
+	amenaza = models.CharField(max_length=100,blank=False, null=False)
+	valores = [(1,1),(2,2),(3,3)]
+	
+	probabilidad = models.IntegerField(choices=valores,default=1)
+	impacto = models.IntegerField(choices=valores,default=1)
+	riesgo = models.IntegerField(blank=True, null=True)
+	# def save(self, *args, **kwargs):
+	# 	self.riesgo = self.probabilidad * self.impacto
+	
+	@property
+	def riesgo(self):
+		return self.probabilidad * self.impacto
+
+	def __str__(self):
+		return str(self.id_Amenaza)
 
 	

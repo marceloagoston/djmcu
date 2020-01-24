@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block title %}Activos{% endblock title %}
+{% block content %}
+	
+<h2>Amenazas</h2>
+
+<small>VISTA EN REFACCION</small>
+
+<div class="izq">
+	<!-- reemplzar home por nuevoact -->
+	<a href="{% url 'nuevo_activo' %}" id="nuevoact" class="btn btn-success"><i class="fas fa-plus-circle"></i> Nuevo Activo</a>	
+</div>
+<div class="">
+	<form method="GET" class="filtro">
+		{{filter.form|bootstrap}}
+		<button type="submit" class="btn btn-dark btn-search"><i class="fas fa-search"></i></button>
+	</form>
+</div>
+
+<ul class="">
+		<table class="table table-striped tab_resp">
+		  <thead>
+		    <tr>
+		      <th scope="col">#ID</th>
+		      <th scope="col">Activo</th>
+		      <th scope="col">Amenaza</th>
+		      <th scope="col">Probabilidad</th>
+		      <th scope="col">Impacto</th>
+		      <th scope="col">Riesgo</th>
+		      <th scope="col">Editar</th>
+		      <th scope="col">Eliminar</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+
+		    {% for amenaza in filter.qs %}
+		    	{% if activo.resp_seguridad == user %}
+					    <tr>
+					    	<!-- reemplazar home por activo detail -->
+					      <th scope="row"><a href="#" class="cnegro">{{amenaza.id_Amenaza}}</a></th>		      
+					      <td>{{amenaza.activo}}</td>
+					      <td>{{amenaza.amenaza}}</td>
+					      <td>{{amenaza.probabilidad}}</td>
+					      <td>{{amenaza.impacto}}</a></td>
+					      <td id="desc"><a href="#" class="cnegro">{{amenaza.riesgo}}</a></td>
+					      <td><a href="#" class="camarillo icono"><i class="far fa-edit"></i></a></td>
+					      <td><a href="#" class="crojo icono"><i class="far fa-trash-alt"></i></a></td>
+					    </tr>
+
+		    	{% endif %}
+		    {% endfor %}
+		  </tbody>
+		</table>
+</ul>	
+</section>
+
+
+{% endblock content %}
