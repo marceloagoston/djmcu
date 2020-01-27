@@ -124,9 +124,6 @@ a:hover{
 .rsp{
 	display: none;
 }
-.of{
-	overflow: auto;
-}
 @media screen and (max-width: 800px) {
   .foot {
     flex-direction: column;
@@ -144,6 +141,9 @@ a:hover{
   	display: none;
   }
 
+.of{
+	overflow: auto;
+}
 /*override boots*/
   .dropdown-menu.show {
     display: flex;
@@ -241,6 +241,9 @@ a:hover{
 }
 .crojo{
 	color: #F00;
+}
+.cverde{
+	color: #218838;
 }
 .camarillo{
 	color: #BF9500;

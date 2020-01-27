@@ -19,6 +19,7 @@
 				<a href="{% url 'home' %}">Inicio</a>
 				{% if user.is_authenticated %}
 					<a href="{% url 'lista_activos' %}">Activos</a>
+					<a href="{% url 'lista_amenazas' %}">Amenazas</a>
 					<div class="dropdown">	
 					  	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					    <i class="far fa-user"></i> {{user.username}}
@@ -38,8 +39,9 @@
 			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			    {% if user.is_authenticated %}
 					<a href="{% url 'lista_activos' %}">Activos</a>
-					  	<a href="{% url 'logout' %}"><i class="far fa-user"></i> {{user.username}}</a>
-					    <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+					<a href="{% url 'lista_amenazas' %}">Amenazas</a>
+					<a href="{% url 'logout' %}"><i class="far fa-user"></i> {{user.username}}</a>
+					<a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
 				{% else %}
 					<a href="{% url 'login' %}"><i class="fas fa-sign-out-alt"></i> Iniciar Sesión</a>
 				{% endif %}

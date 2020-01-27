@@ -27,17 +27,13 @@ class ActivosFilter(django_filters.FilterSet):
 
 class AmenazasFilter(django_filters.FilterSet):
 
-	seleccion = (
-	    ('ascending', 'Mas Bajo'),
-	    ('descending', 'Mas Alto'),
-		)
+	# FALTA EL FILTRO DE RIEGOS bajo, medio alto
 
-	ordering = django_filters.ChoiceFilter(label='Ordernar: ', method='filter_by_order', choices=seleccion)
+	amenaza = django_filters.CharFilter(label='Nombre Amenaza', lookup_expr='icontains')
+
+	activo__TAid = django_filters.NumberFilter(label='ID Activo')
 
 	class Meta:
 		model = Amenaza
-		fields =('impacto','probabilidad','activo')
+		fields =() #aca puedo meterle campos del modelo
 
-	def filter_by_order(self, queryset, name, value):
-		expression = 'impacto' if value == 'ascending' else '-impacto'
-		return queryset.order_by(expression)	

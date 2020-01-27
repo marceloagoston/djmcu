@@ -20,8 +20,6 @@
 		  <thead>
 		    <tr>
 		      <th scope="col">#ID</th>
-		      <th scope="col">Resp. Seguridad</th>
-		      <!-- Tipo activo puede ser la cabecera de la pagina -->
 		      <th scope="col">Tipo activo </th>
 		      <th scope="col">Nombre</th>
 		      <th scope="col">Descripción</th>
@@ -31,16 +29,16 @@
 		      <th scope="col">Fecha Alta</th>
 		      <th scope="col">Editar</th>
 		      <th scope="col">Eliminar</th>
+		      <th scope="col">Añadir Amenaza</th>
 		    </tr>
 		  </thead>
 		  <tbody>
 
 		    {% for activo in filter.qs %}
-		    	{% if activo.resp_seguridad == user %}
+		    	
 					    <tr>
 					    	<!-- reemplazar home por activo detail -->
 					      <th scope="row"><a href="{% url 'detalle_activo' activo.TAid %}" class="cnegro">{{activo.TAid}}</a></th>		      
-					      <td>{{activo.resp_seguridad}}</td>
 					      <td>{{activo.tipoactivo}}</td>
 					      <td>{{activo.nombre}}</a></td>
 					      <td id="desc"><a href="{% url 'detalle_activo' activo.TAid %}" class="cnegro">{{activo.descripcion|truncatewords:10}}</a></td>
@@ -50,8 +48,9 @@
 					      <td>{{activo.date|date:"t/m/Y H:i"}}</td>
 					      <td><a href="{% url 'editar_activo' activo.TAid %}" class="camarillo icono"><i class="far fa-edit"></i></a></td>
 					      <td><a href="{% url 'eliminar_activo' activo.TAid %}" class="crojo icono"><i class="far fa-trash-alt"></i></a></td>
+					      <td><a href="#" class="cverde icono"><i class="fas fa-plus-circle"></i></a></td>
 					    </tr>
-		    	{% endif %}
+		    	
 		    {% endfor %}
 		  </tbody>
 		</table>

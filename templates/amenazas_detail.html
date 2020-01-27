@@ -23,6 +23,7 @@
 		  <thead>
 		    <tr>
 		      <th scope="col">#ID</th>
+		      <th scope="col">ID Activo</th>
 		      <th scope="col">Activo</th>
 		      <th scope="col">Amenaza</th>
 		      <th scope="col">Probabilidad</th>
@@ -35,10 +36,11 @@
 		  <tbody>
 
 		    {% for amenaza in filter.qs %}
-		    	{% if activo.resp_seguridad == user %}
+
 					    <tr>
 					    	<!-- reemplazar home por activo detail -->
 					      <th scope="row"><a href="#" class="cnegro">{{amenaza.id_Amenaza}}</a></th>		      
+					      <td>{{amenaza.activo.TAid}}</td>
 					      <td>{{amenaza.activo}}</td>
 					      <td>{{amenaza.amenaza}}</td>
 					      <td>{{amenaza.probabilidad}}</td>
@@ -48,7 +50,6 @@
 					      <td><a href="#" class="crojo icono"><i class="far fa-trash-alt"></i></a></td>
 					    </tr>
 
-		    	{% endif %}
 		    {% endfor %}
 		  </tbody>
 		</table>

@@ -26,6 +26,10 @@ class ActivosListView(LoginRequiredMixin, ListView):
 		context['filter'] = ActivosFilter(self.request.GET, queryset=self.get_queryset())
 		return context
 
+	def get_queryset(self):
+		return Activo.objects.filter(resp_seguridad=self.request.user.id)
+
+
 class ActivosDetailView(LoginRequiredMixin, DetailView):
 	model = Activo
 	template_name = 'activo_detail.html'
@@ -85,3 +89,15 @@ class AmenazasListView(LoginRequiredMixin, ListView):
 		context = super().get_context_data(**kwargs)
 		context['filter'] = AmenazasFilter(self.request.GET, queryset=self.get_queryset())
 		return context
+
+	def get_queryset(self):
+		return  Amenaza.objects.filter(activo__resp_seguridad=self.request.user.id)
+
+
+# queries
+
+ # Activo.objects.filter(resp_seguridad='7') --> retorna los activos de ese responsable de seguridad
+
+ # request.user.id --> me retorna el id del usuario logueado
+
+ # Activo.objects.filter(resp_seguridad=request.user.id) --> probar

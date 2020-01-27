@@ -41,7 +41,7 @@ class Activo(models.Model):
                   default='1')
 
 	def __str__(self):
-		return 'ID: '+str(self.TAid)+' '+self.nombre
+		return self.nombre
 
 	def get_absolute_url(self):
 		return reverse('lista_activos')
