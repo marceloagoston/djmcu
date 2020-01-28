@@ -8,6 +8,8 @@ ActivoCreateView,
 TipoActivosListView,
 ActivosListView,
 AmenazasListView,
+AmenazasDeleteView,
+AmenazasCreateView,
 )
 
 urlpatterns = [
@@ -18,4 +20,6 @@ urlpatterns = [
 	path('<int:pk>/eliminar/', ActivosDeleteView.as_view(), name='eliminar_activo'),
 	path('nuevoactivo/', ActivoCreateView.as_view(), name='nuevo_activo'),
 	path('amenazas/', AmenazasListView.as_view(), name='lista_amenazas'),
+	path('amenazas/<int:pk>/eliminar/', AmenazasDeleteView.as_view(), name='eliminar_amenaza'),
+	path('amenazas/nueva/amenaza/<int:pk>/', AmenazasCreateView.as_view(), name='nueva_amenaza'),
 ]

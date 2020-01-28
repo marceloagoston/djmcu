@@ -9,7 +9,7 @@
 
 <div class="izq">
 	<!-- reemplzar home por nuevoact -->
-	<a href="{% url 'nuevo_activo' %}" id="nuevoact" class="btn btn-success"><i class="fas fa-plus-circle"></i> Nuevo Activo</a>	
+	<a href="{% url 'lista_activos' %}" id="nuevoact" class="btn btn-success"><i class="fas fa-arrow-circle-left"></i> Volver a lista de activos</a>	
 </div>
 <div class="">
 	<form method="GET" class="filtro">
@@ -47,7 +47,7 @@
 					      <td>{{amenaza.impacto}}</a></td>
 					      <td id="desc"><a href="#" class="cnegro">{{amenaza.riesgo}}</a></td>
 					      <td><a href="#" class="camarillo icono"><i class="far fa-edit"></i></a></td>
-					      <td><a href="#" class="crojo icono"><i class="far fa-trash-alt"></i></a></td>
+					      <td><a href="{% url 'eliminar_amenaza' amenaza.id_Amenaza %}" class="crojo icono"><i class="far fa-trash-alt"></i></a></td>
 					    </tr>
 
 		    {% endfor %}

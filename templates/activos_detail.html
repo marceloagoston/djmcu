@@ -48,7 +48,7 @@
 					      <td>{{activo.date|date:"t/m/Y H:i"}}</td>
 					      <td><a href="{% url 'editar_activo' activo.TAid %}" class="camarillo icono"><i class="far fa-edit"></i></a></td>
 					      <td><a href="{% url 'eliminar_activo' activo.TAid %}" class="crojo icono"><i class="far fa-trash-alt"></i></a></td>
-					      <td><a href="#" class="cverde icono"><i class="fas fa-plus-circle"></i></a></td>
+					      <td><a href="{% url 'nueva_amenaza' activo.TAid %}" class="cverde icono"><i class="fas fa-plus-circle"></i></a></td>
 					    </tr>
 		    	
 		    {% endfor %}
