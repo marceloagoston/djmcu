@@ -46,10 +46,10 @@
 					      <td>{{amenaza.probabilidad}}</td>
 					      <td>{{amenaza.impacto}}</a></td>
 					      <td id="desc"><a href="#" class="cnegro">{{amenaza.riesgo}}</a></td>
-					      <td><a href="#" class="camarillo icono"><i class="far fa-edit"></i></a></td>
+					      <td><a href="{% url 'editar_amenaza' amenaza.id_Amenaza %}" class="camarillo icono"><i class="far fa-edit"></i></a></td>
 					      <td><a href="{% url 'eliminar_amenaza' amenaza.id_Amenaza %}" class="crojo icono"><i class="far fa-trash-alt"></i></a></td>
 					    </tr>
-
+editar_amenaza
 		    {% endfor %}
 		  </tbody>
 		</table>

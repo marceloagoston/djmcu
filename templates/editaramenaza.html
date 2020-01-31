@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+	<h2>Editar activo: #{{amenaza.id_Amenaza}} {{amenaza.amenaza}}</h2>
+	<h5>Pertenece al activo: #{{amenaza.activo.TAid}} {{amenaza.activo.nombre}}</h5>
+	<hr>
+
+	<form action="" method="post">{% csrf_token %}
+		<div class="form">
+			{{  form|crispy }}
+		</div>
+		<hr>
+		<div class="bot-sec">
+			<input type="submit" value="Actualizar" class="btn btn-warning font-weight-bold" />
+			<a href="{% url 'lista_amenazas' %}" class="btn btn-dark">Cancelar</a>
+		</div>
+		
+	</form>
+		
+
+{% endblock content %}

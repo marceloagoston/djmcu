@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<h2>¿Está Seguro que Desea eliminar #{{amenaza.id_Amenaza}} {{amenaza.amenaza}}?</h2>
-
+	<h2>¿Está Seguro que desea eliminar la <strong>Amenaza #{{amenaza.id_Amenaza}} {{amenaza.amenaza}}</strong>?</h2>
+	<h4>Pertenece al Activo #{{amenaza.activo.TAid}} {{amenaza.activo.nombre}}</h4>
+	<hr>
 	<form action="" method="post">{% csrf_token %}
-		<input type="submit" value="Eliminar" class="btn btn-danger font-weight-bold" />
-		<a href="{% url 'lista_amenazas' %}" id="nuevoact" class="btn btn-dark sep font-weight-bold">Cancelar</a>
+		<div class="bot-sec">
+			<input type="submit" value="Eliminar" class="btn btn-danger font-weight-bold" />
+			<a href="{% url 'lista_amenazas' %}" id="nuevoact" class="btn btn-dark sep font-weight-bold">Cancelar</a>
+		</div>
 	</form>
 		
 

@@ -124,6 +124,21 @@ a:hover{
 .rsp{
 	display: none;
 }
+.form-edit-activo{
+	
+}
+.form{
+	display: flex;
+	justify-content: space-between;
+}
+
+.bot-sec{
+	display: flex;
+	justify-content: space-around;
+	padding-top: 5%;
+}
+
+/*Responsivo*/
 @media screen and (max-width: 800px) {
   .foot {
     flex-direction: column;
@@ -144,6 +159,11 @@ a:hover{
 .of{
 	overflow: auto;
 }
+
+.bot-sec{
+	padding-bottom: 5%;
+}
+
 /*override boots*/
   .dropdown-menu.show {
     display: flex;
@@ -224,6 +244,9 @@ a:hover{
 /* clases simples */
 .pad3{
 	padding: 3%;
+}
+.pad-b-5{
+	padding-bottom: 5%;
 }
 .mg_3{
 	margin-left: -1%;

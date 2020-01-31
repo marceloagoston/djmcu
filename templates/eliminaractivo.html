@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<h2>¿Está Seguro que Desea eliminar #{{activo.TAid}} {{activo.nombre}}?</h2>
-
+	<h2>¿Está Seguro que desea eliminar el <strong>Activo #{{activo.TAid}} {{activo.nombre}}</strong>?</h2>
+	<hr>
 	<form action="" method="post">{% csrf_token %}
-		<input type="submit" value="Eliminar" class="btn btn-danger font-weight-bold" />
+		<div class="bot-sec">
+			<input type="submit" value="Eliminar" class="btn btn-danger font-weight-bold" />
+			<a href="{% url 'lista_activos' %}" class="btn btn-dark">Cancelar</a>
+		</div>
+		
 	</form>
 		
 

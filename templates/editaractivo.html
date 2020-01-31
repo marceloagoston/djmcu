@@ -3,10 +3,17 @@
 {% block content %}
 	<h2>Editar activo: #{{activo.TAid}} {{activo.nombre}}</h2>
 
+	<hr>
 	<form action="" method="post">{% csrf_token %}
-		{{  form|crispy }}
-		<input type="submit" value="Actualizar" class="btn btn-warning font-weight-bold" />
-		<a href="{% url 'lista_activos' %}" class="btn btn-dark">Cancelar</a>
+		<div class="form-edit-activo">
+			{{  form|crispy }}	
+		</div>
+		<hr>
+		<div class="bot-sec pad-b-5">
+			<input type="submit" value="Actualizar" class="btn btn-warning font-weight-bold" />
+			<a href="{% url 'lista_activos' %}" class="btn btn-dark">Cancelar</a>
+		</div>
+	
 	</form>
 		
 

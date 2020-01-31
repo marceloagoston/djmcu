@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {%block content%}
-<h2>Registrar Activo</h2>
+<h2>Registrar Amenaza</h2>
+<h5>Id Activo: {poner el id y nombre del activo para que sea mas intuitivo}</h5>
+{{amen.activo}} <small>el problema parece que es que en un create view tiene problemas para acceder al modelo. Ver de Resolver con un queryset</small>
 <div class="izq">
 	
 </div>
 <form action="" method="post">{% csrf_token %}
-	{{ form|crispy }}
-	<input type="submit" value="Guardar" class="btn btn-success">
-	<a href="{% url 'lista_amenazas' %}" id="nuevoact" class="btn btn-dark sep font-weight-bold">Cancelar</a>
+	<hr>
+	<div class="form">
+		{{  form|crispy }}
+	</div>
+	<hr>
+	<div class="bot-sec">
+		<input type="submit" value="Guardar" class="btn btn-success">
+		<a href="{% url 'lista_amenazas' %}" id="nuevoact" class="btn btn-dark sep font-weight-bold">Cancelar</a>
+	</div>
+	
 </form>
 {%endblock content%}
