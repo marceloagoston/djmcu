@@ -1,0 +1,1 @@
+web: gunicorn djmcu.wsgi --log-file -
