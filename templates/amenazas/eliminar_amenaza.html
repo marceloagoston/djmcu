@@ -7,7 +7,7 @@
 	<form action="" method="post">{% csrf_token %}
 		<div class="bot-sec">
 			<input type="submit" value="Eliminar" class="btn btn-danger font-weight-bold" />
-			<a href="{% url 'lista_amenazas' %}" id="nuevoact" class="btn btn-dark sep font-weight-bold">Cancelar</a>
+			<a href="{% url 'detalle_amenaza' amenaza.id_Amenaza %}" id="nuevoact" class="btn btn-dark sep font-weight-bold">Cancelar</a>
 		</div>
 	</form>
 		

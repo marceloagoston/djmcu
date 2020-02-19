@@ -9,6 +9,7 @@
     <link rel="shortcut icon" href="{% static 'favicon-01.png' %}" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link href="{% static 'css/base.css' %}" rel="stylesheet">
+	<script src="{% static 'js/funciones.js' %}" language="javascript" type="text/javascript"></script>
 </head>
 <body>
 	<header class="">
@@ -32,7 +33,6 @@
 					<a href="{% url 'login' %}"><i class="fas fa-sign-out-alt"></i> Iniciar Sesión</a>
 				{% endif %}
 			</div>
-
 			<div class="dropdown dropleft rsp">
 			  <button class="btn btn-secondary " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bars icono"></i>
 			  </button>

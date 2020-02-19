@@ -11,18 +11,25 @@ class ActivosFilter(django_filters.FilterSet):
 	# 	)
 
 	seleccion = (
+	    ('ascending', 'Menos Grave'),
+	    ('descending', 'Mas Grave'),
+		)
+
+	seleccion2 = (
 	    ('ascending', 'Mas Antiguo'),
 	    ('descending', 'Mas Nuevo'),
 		)
 
-	ordering = django_filters.ChoiceFilter(label='Ordernar: ', method='filter_by_order', choices=seleccion)
+	ordering = django_filters.ChoiceFilter(label='Gravedad: ', method='filter_by_order', choices=seleccion)
+
+	antiguedad = django_filters.ChoiceFilter(label='Ordenar: ', method='filter_by_order', choices=seleccion2)
 
 	class Meta:
 		model = Activo
-		fields =('tipoactivo',)
+		fields =('tipoactivo','valor',)
 
 	def filter_by_order(self, queryset, name, value):
-		expression = 'date' if value == 'ascending' else '-date'
+		expression = 'valor' if value == 'ascending' else '-valor'
 		return queryset.order_by(expression)
 
 class AmenazasFilter(django_filters.FilterSet):

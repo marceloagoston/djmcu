@@ -7,7 +7,7 @@
 		<form method="post" class="logform pad3">
 			{%csrf_token%}
 			{{ form|crispy }}
-			<p>*campos obligatorios</p>
+			<small class="c_ob">*campos obligatorios</small>
 			<button type="submit" class="btn btn-success">Iniciar Sesión</button>
 		</form>
 	</div>

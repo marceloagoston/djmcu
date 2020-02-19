@@ -29,11 +29,11 @@ class Activo(models.Model):
 	valor=models.CharField(max_length=20,blank=False)
 
 	riesgo = [
-    ('Leve','1'),
-    ('Leve','2'),
-    ('Grave','4'),
-    ('Crítico','5'),
-    ('Crítico','6'),
+    ('1','1'),
+    ('2','2'),
+    ('3','3'),
+    # ('Crítico','5'),
+    # ('Crítico','6'),
 	]
 
 	valor = models.CharField(max_length=7,

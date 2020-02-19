@@ -79,11 +79,9 @@ class ActivosDeleteView(LoginRequiredMixin, DeleteView):
 
 # Vistas Amenazas
 
-# !!!!! PROBAR QUE SOLO EL DUEÑO DE UN ACTIVO PUEDA BORRAR SUS AMENAZAS
-
 class AmenazasListView(LoginRequiredMixin, ListView):
 	model = Amenaza
-	template_name = 'amenazas_detail.html'
+	template_name = 'amenazas/amenazas_detail.html'
 	context_object_name = 'amenazas'
 	login_url = 'login'
 	def get_context_data(self, **kwargs):
@@ -97,10 +95,10 @@ class AmenazasListView(LoginRequiredMixin, ListView):
 class AmenazasCreateView(LoginRequiredMixin, CreateView):
 	model = Amenaza
 	form_class = NuevaAmenazaForm
-	template_name = 'nueva_amenaza.html'
+	template_name = 'amenazas/nueva_amenaza.html'
 	context_object_name = 'amen'
 	login_url = 'login'
-	success_url = reverse_lazy('lista_amenazas')
+	success_url = reverse_lazy('lista_activos')
 	# eliminamos de arriba el campo usuario y con la función de abajo decimos que el usuario logueado es el autor
 	def form_valid(self, form):
 		form.instance.resp_seguridad = self.request.user
@@ -111,29 +109,42 @@ class AmenazasCreateView(LoginRequiredMixin, CreateView):
 class AmenazasUpdateView(LoginRequiredMixin, UpdateView):
 	model = Amenaza
 	fields = ('amenaza','probabilidad','impacto',)
-	template_name = 'editaramenaza.html'
+	template_name = 'amenazas/editaramenaza.html'
 	success_url = reverse_lazy('lista_amenazas')
 	context_object_name = 'amenaza'
 	login_url = 'login'
 
-	# def dispatch(self, request, *args, **kwargs):
-	# 	obj = self.get_object()
-	# 	if obj.resp_seguridad != self.request.user:
-	# 		raise PermissionDenied
-	# 	return super().dispatch(request, *args, **kwargs)
-
 # para que solo el autor pueda editar el activo
+	def dispatch(self, request, *args, **kwargs):
+		obj = self.get_object()
+		if obj.activo.resp_seguridad != self.request.user:
+			raise PermissionDenied
+		return super().dispatch(request, *args, **kwargs)
+
+# DETAIL
+
+class AmenazasDetailView(LoginRequiredMixin, DetailView):
+	model = Amenaza
+	template_name = 'amenazas/amenaza_detail.html'
+	context_object_name = 'amenazas'
+	login_url = 'login'
+	def dispatch(self, request, *args, **kwargs):
+		obj = self.get_object()
+		if obj.activo.resp_seguridad != self.request.user:
+			raise PermissionDenied
+		return super().dispatch(request, *args, **kwargs)
+
 class AmenazasDeleteView(LoginRequiredMixin, DeleteView):
 	model = Amenaza
-	template_name = 'eliminar_amenaza.html'
+	template_name = 'amenazas/eliminar_amenaza.html'
 	success_url = reverse_lazy('lista_amenazas')
 	context_object_name = 'amenaza'
 	login_url = 'login'
 	# para que solo el autor pueda eliminar el activo
-	# def dispatch(self, request, *args, **kwargs): # new
-	# 	obj = self.get_object()
-	# 	if obj.resp_seguridad != self.request.user:
-	# 		raise PermissionDenied
-	# 	return super().dispatch(request, *args, **kwargs)
+	def dispatch(self, request, *args, **kwargs): # new
+		obj = self.get_object()
+		if obj.activo.resp_seguridad != self.request.user:
+			raise PermissionDenied
+		return super().dispatch(request, *args, **kwargs)
 
 

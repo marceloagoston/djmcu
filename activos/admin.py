@@ -10,7 +10,8 @@ class ActivoAdmin(admin.ModelAdmin):
 class AmenazaAdmin(admin.ModelAdmin):
 	model = Amenaza
 	list_display = ['id_Amenaza','activo','amenaza','probabilidad','impacto','riesgo',]
-	list_filter = ['probabilidad','impacto',]
+	list_filter = ['activo__resp_seguridad','probabilidad','impacto','activo__nombre','activo__TAid',]
+	search_fields = ['activo__nombre','activo__TAid',]
 
 admin.site.register(Activo, ActivoAdmin)
 admin.site.register(Amenaza, AmenazaAdmin)

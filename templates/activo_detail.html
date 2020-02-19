@@ -18,7 +18,10 @@
 		<p>Valor de Riesgo del activo: {{activo.valor}}</p>	
 		<p>{{activo.date}}</p>
 	</div>
+	<div class="der">
+		<a href="{% url 'nueva_amenaza' activo.TAid %}" class="btn btn-success sep font-weight-bold"><i class="fas fa-plus-circle"></i> Añadir Amenaza</a>
+	</div>
 	
-	
+	<small style="color:red"> Listar Amenazas de este activo aca?</small>
 		
 {%endblock content%}

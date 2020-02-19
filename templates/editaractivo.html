@@ -4,7 +4,7 @@
 	<h2>Editar activo: #{{activo.TAid}} {{activo.nombre}}</h2>
 
 	<hr>
-	<form action="" method="post">{% csrf_token %}
+	<form action="" method="post" class="form_fix">{% csrf_token %}
 		<div class="form-edit-activo">
 			{{  form|crispy }}	
 		</div>

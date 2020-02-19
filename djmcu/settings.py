@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ajb!oa)@k%ylj84ivx)#11q+14q#we46llvh63sae4&&c4azpf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -83,21 +83,21 @@ WSGI_APPLICATION = 'djmcu.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
-import dj_database_url
-from decouple import config
-
 DATABASES = {
-    'default' : dj_database_url.config(
-        default=config('DATABASE_URL')
-        )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
+
+# import dj_database_url
+# from decouple import config
+
+# DATABASES = {
+#     'default' : dj_database_url.config(
+#         default=config('DATABASE_URL')
+#         )
+# }
 
 
 # Password validation
@@ -138,13 +138,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_ROOT = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static')
-    )
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'static')
+#     )
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_REDIRECT_URL = 'home'
