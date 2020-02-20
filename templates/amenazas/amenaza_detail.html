@@ -15,4 +15,45 @@
 		<p>Impacto: {{amenazas.impacto}}</p>
 		<p>Riesgo: {{amenazas.riesgo}}</p>
 	</div>
+	<section style="width:50%; margin:auto;">
+		<canvas id="myChart"></canvas>
+	</section>
+    <script>
+        var ctx= document.getElementById("myChart").getContext("2d");
+
+        var myChart= new Chart(ctx,{
+            type:"line",
+
+            data:{
+                labels:['Probabilidad','Imapacto','Riesgo'],
+                datasets:[{
+                        label:'Post Analisis',
+                        data:[{{amenazas.probabilidad}},{{amenazas.impacto}},{{amenazas.riesgo}}],
+           				borderColor: 'rgb(4, 165, 160)',
+           				fill:false
+                },
+				{
+                        label:'Antes del Analisis',
+                        data:[3,3,9],
+           				borderColor: 'rgb(255, 0, 0)',
+           				fill:false
+                }
+                ]
+
+            },
+            options:{
+                scales:{
+                    yAxes:[{
+                            ticks:{
+                                beginAtZero:true,
+
+
+                            }
+                    }]
+                }
+            }
+        });
+        ctx.lineCap = 'square';
+    </script>
+
 {%endblock content%}

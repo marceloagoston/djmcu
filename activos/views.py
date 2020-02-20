@@ -33,7 +33,7 @@ class ActivosListView(LoginRequiredMixin, ListView):
 class ActivoCreateView(LoginRequiredMixin, CreateView):
 	model = Activo
 	template_name = 'nuevoact.html'
-	fields = ('tipoactivo', 'nombre','descripcion','propietario','responsable','ubicacion','valor')
+	fields = ('tipoactivo', 'nombre','descripcion','propietario','responsable','ubicacion','valor','informe',)
 	login_url = 'login'
 	# eliminamos de arriba el campo usuario y con la función de abajo decimos que el usuario logueado es el autor
 	def form_valid(self, form):
@@ -53,7 +53,7 @@ class ActivosDetailView(LoginRequiredMixin, DetailView):
 
 class ActivosUpdateView(LoginRequiredMixin, UpdateView):
 	model = Activo
-	fields = ('tipoactivo', 'nombre','descripcion','propietario','ubicacion','valor')
+	fields = ('tipoactivo', 'nombre','descripcion','propietario','ubicacion','valor','informe',)
 	template_name = 'editaractivo.html'
 	context_object_name = 'activo'
 	login_url = 'login'
@@ -146,5 +146,3 @@ class AmenazasDeleteView(LoginRequiredMixin, DeleteView):
 		if obj.activo.resp_seguridad != self.request.user:
 			raise PermissionDenied
 		return super().dispatch(request, *args, **kwargs)
-
-

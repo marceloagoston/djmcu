@@ -27,6 +27,7 @@ class Activo(models.Model):
 	responsable=models.CharField(max_length=100,blank=False)
 	ubicacion=models.CharField(max_length=100,blank=False)
 	valor=models.CharField(max_length=20,blank=False)
+	informe = models.FileField(blank=True,null=True,upload_to="documentos/%Y/%m/%D/")
 
 	riesgo = [
     ('1','1'),

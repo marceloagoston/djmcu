@@ -17,6 +17,7 @@
 		<p>Ubicación del Activo: {{activo.ubicacion}}</p>
 		<p>Valor de Riesgo del activo: {{activo.valor}}</p>	
 		<p>{{activo.date}}</p>
+		<p>Subir informe: {{instance.activo.informe.url}}</p>
 	</div>
 	<div class="der">
 		<a href="{% url 'nueva_amenaza' activo.TAid %}" class="btn btn-success sep font-weight-bold"><i class="fas fa-plus-circle"></i> Añadir Amenaza</a>

@@ -28,5 +28,4 @@ urlpatterns = [
 	path('amenazas/nueva/amenaza/<int:pk>/', AmenazasCreateView.as_view(), name='nueva_amenaza'),
 	path('amenazas/editar/<int:pk>', AmenazasUpdateView.as_view(), name='editar_amenaza'),
 	path('amenazas/<int:pk>/', AmenazasDetailView.as_view(), name='detalle_amenaza'),
-
 ]
