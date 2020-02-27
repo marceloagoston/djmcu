@@ -2,11 +2,18 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from .models import Activo, Amenaza
 from django.views import generic
 from .filters import ActivosFilter, AmenazasFilter
 from .forms import NuevaAmenazaForm
+
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from django.conf import settings
+
+from django.contrib.auth.decorators import login_required
+
 
 # esta clase esta al pedo me parece
 class TipoActivosListView(LoginRequiredMixin ,ListView):
@@ -63,6 +70,17 @@ class ActivosUpdateView(LoginRequiredMixin, UpdateView):
 		if obj.resp_seguridad != self.request.user:
 			raise PermissionDenied
 		return super().dispatch(request, *args, **kwargs)
+
+	@login_required
+	def upload_image_view(request):
+	    if request.method == 'POST':
+	        form = UpdateActivoForm(request.POST, request.FILES)
+	        if form.is_valid():
+	            form.save()
+	            message = "¡¡Archivo subido exitosamente!!"
+	    else:
+	        form = UpdateActivoForm()
+
 # para que solo el autor pueda editar el activo
 class ActivosDeleteView(LoginRequiredMixin, DeleteView):
 	model = Activo

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {%block content%}
 	<div class="izq">
 		<a href="{% url 'editar_activo' activo.TAid %}" class="btn btn-warning sep font-weight-bold"><i class="far fa-edit"></i> Editar</a>
@@ -17,7 +17,7 @@
 		<p>Ubicación del Activo: {{activo.ubicacion}}</p>
 		<p>Valor de Riesgo del activo: {{activo.valor}}</p>	
 		<p>{{activo.date}}</p>
-		<p>Subir informe: {{instance.activo.informe.url}}</p>
+		<p><a href="{{activo.informe_url|default_if_none:'#'}}" class="link-n" target="_blank">Ver informe <i class="far fa-file"></i></a></p>
 	</div>
 	<div class="der">
 		<a href="{% url 'nueva_amenaza' activo.TAid %}" class="btn btn-success sep font-weight-bold"><i class="fas fa-plus-circle"></i> Añadir Amenaza</a>

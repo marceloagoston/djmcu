@@ -38,12 +38,6 @@ tr th, tr td{
 }
 a{
 	text-decoration: none;
-	color: white;
-}
-a:hover{
-	text-decoration: none;
-	color: #04A5A0;
-	font-weight: 900;
 }
 #nuevoact{
 	color: white;
@@ -260,7 +254,7 @@ a:hover{
   margin-top: 20px!important;
 }
 .table-hover tbody tr:hover {
-  background-color: rgba(0, 0, 0, 0.25) !important;
+  background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
 /* clases simples */
@@ -272,6 +266,17 @@ a:hover{
 }
 .mg_3{
 	margin-left: -1%;
+}
+.link-n{
+	color: black;
+}
+.link-b{
+	color: white;
+}
+.link-b:hover{
+	text-decoration: none;
+	color: #04A5A0;
+	font-weight: 900;
 }
 
 /*Trabajo con texto*/

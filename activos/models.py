@@ -27,7 +27,7 @@ class Activo(models.Model):
 	responsable=models.CharField(max_length=100,blank=False)
 	ubicacion=models.CharField(max_length=100,blank=False)
 	valor=models.CharField(max_length=20,blank=False)
-	informe = models.FileField(blank=True,null=True,upload_to="documentos/%Y/%m/%D/")
+	informe = models.FileField(blank=True,null=True,upload_to="documentos/%Y/%m/")
 
 	riesgo = [
     ('1','1'),
@@ -47,6 +47,10 @@ class Activo(models.Model):
 	def get_absolute_url(self):
 		return reverse('lista_activos')
 
+	@property
+	def informe_url(self):
+	    if self.informe and hasattr(self.informe, 'url'):
+	        return self.informe.url
 class Amenaza(models.Model):
 	id_Amenaza = models.AutoField(primary_key=True)
 	# Restriccion de Clave con Activos
