@@ -54,7 +54,7 @@ class Activo(models.Model):
 class Amenaza(models.Model):
 	id_Amenaza = models.AutoField(primary_key=True)
 	# Restriccion de Clave con Activos
-	activo = models.ForeignKey(Activo, on_delete=models.CASCADE)
+	activo = models.ForeignKey(Activo, on_delete=models.CASCADE, related_name='amenazas_activo')
 	amenaza = models.CharField(max_length=100,blank=False, null=False)
 	valores = [(1,1),(2,2),(3,3)]
 	
@@ -71,4 +71,20 @@ class Amenaza(models.Model):
 	def __str__(self):
 		return str(self.id_Amenaza)
 
+class HistoricoAmenaza(models.Model):
+	# el ID me lo da Django
+	# Restriccion de Clave con Activos
+	id_f_amenaza = models.ForeignKey(Amenaza, on_delete=models.CASCADE)
+	nombre_amenaza  = models.CharField(max_length=100,blank=False, null=False)
+	valores = [(1,1),(2,2),(3,3)]
 	
+	probabilidad = models.IntegerField(choices=valores,default=1)
+	impacto = models.IntegerField(choices=valores,default=1)
+	riesgo = models.IntegerField(blank=True, null=True)
+	
+	@property
+	def riesgo(self):
+		return self.probabilidad * self.impacto
+
+	def __str__(self):
+		return str(self.id)

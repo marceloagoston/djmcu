@@ -12,8 +12,6 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.conf import settings
 
-from django.contrib.auth.decorators import login_required
-
 
 # esta clase esta al pedo me parece
 class TipoActivosListView(LoginRequiredMixin ,ListView):
@@ -52,7 +50,13 @@ class ActivosDetailView(LoginRequiredMixin, DetailView):
 	template_name = 'activo_detail.html'
 	context_object_name = 'activo'
 	login_url = 'login'
-	def dispatch(self, request, *args, **kwargs): # new
+
+	def get_context_data(self, **kwargs):
+		ctx = super().get_context_data(**kwargs)
+		ctx['amenaza_activos'] = Amenaza.objects.filter(activo=self.kwargs['pk'])
+		return ctx
+
+	def dispatch(self, request, *args, **kwargs):
 		obj = self.get_object()
 		if obj.resp_seguridad != self.request.user:
 			raise PermissionDenied
@@ -71,7 +75,6 @@ class ActivosUpdateView(LoginRequiredMixin, UpdateView):
 			raise PermissionDenied
 		return super().dispatch(request, *args, **kwargs)
 
-	@login_required
 	def upload_image_view(request):
 	    if request.method == 'POST':
 	        form = UpdateActivoForm(request.POST, request.FILES)
