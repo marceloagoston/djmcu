@@ -17,26 +17,72 @@
 		<p>Ubicación del Activo: {{activo.ubicacion}}</p>
 		<p>Valor de Riesgo del activo: {{activo.valor}}</p>	
 		<p>{{activo.date}}</p>
-		<p><a href="{{activo.informe_url|default_if_none:'#'}}" class="link-n" target="_blank">Ver informe <i class="far fa-file"></i></a></p>
+		<p><a href="{{activo.informe_url|default_if_none:'#'}}" class="btn btn-dark link-b" target="_blank">Ver informe <i class="far fa-file"></i></a></p>
 	</div>
 	<div class="der">
-		<a href="{% url 'nueva_amenaza' activo.TAid %}" class="btn btn-success sep font-weight-bold"><i class="fas fa-plus-circle"></i> Añadir Amenaza</a>
+		<a href="{% url 'nueva_amenaza' activo.TAid %}" class="btn btn-success ag-mr-05 font-weight-bold"><i class="fas fa-plus-circle"></i> Añadir Amenaza</a>
+        <button id="ag-bot" type="button" class="btn btn-info sep"><i class="far fa-eye-slash"></i> Ocultar Lista Amenazas</button>
 	</div>
-	<div>
-		{% for amenaza in amenaza_activos %}
-           valor: {{amenaza}} {{amenaza.amenaza}}
-           <p>riesgo: {{amenaza.riesgo}}</p>
+
+<ul id="ag-tab">
+    <table class="table table-hover table-striped tab_resp">
+        <thead>
+        <tr>
+            <th scope="col">#ID</th>
+            <th scope="col">ID Activo</th>
+            <th scope="col">Activo</th>
+            <th scope="col">Amenaza</th>
+            <th scope="col">Probabilidad</th>
+            <th scope="col">Impacto</th>
+            <th scope="col">Riesgo</th>
+            <th scope="col">Ver Detalles</th>
+            <th scope="col">Editar</th>
+            <th id="lad" scope="col">Eliminar</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for amenaza in amenaza_activos %}
+            <tr>
+                <th scope="row"><a href="{% url 'detalle_amenaza' amenaza.id_Amenaza %}" class="cnegro">{{amenaza.id_Amenaza}}</a></th>             
+                <td>{{amenaza.activo.TAid}}</td>
+                <td>{{amenaza.activo}}</td>
+                <td>{{amenaza.amenaza}}</td>
+                <td>{{amenaza.probabilidad}}</td>
+                <td>{{amenaza.impacto}}</a></td>
+                <td id="riesgo" class="riesgo">{{amenaza.riesgo}}</td>
+                <td><a href="{% url 'detalle_amenaza' amenaza.id_Amenaza %}" class="cnegro"><i class="far fa-eye"></i></a></td>
+                <td><a href="{% url 'editar_amenaza' amenaza.id_Amenaza %}" class="camarillo icono"><i class="far fa-edit"></i></a></td>
+                <td><a href="{% url 'eliminar_amenaza' amenaza.id_Amenaza %}" class="crojo icono"><i class="far fa-trash-alt"></i></a></td>
+            </tr>
         {% endfor %}
-	</div>
-	<small style="color:red"> Listar Amenazas de este activo aca?</small>
+        <script>
+            let ag_bot = document.getElementById("ag-bot");
+            let ag_tab = document.getElementById("ag-tab");
+            cond = false;    
+            ag_bot.onclick = () => {
+                console.log(cond);
+                if (cond==true){
+                    ag_tab.style.display = "none";
+                    ag_bot.innerHTML = `<i class="far fa-eye"></i> Mostrar Lista de Amenazas`
+                    cond = false;
+                    console.log(cond);
+                } else{
+                    ag_tab.style.display = "block";
+                    ag_bot.innerHTML = `<i class="far fa-eye-slash"></i> Ocultar Lista Amenazas`
+                    cond = true;
+                    console.log(cond);
+                }
+            }
+            valorRiesgo();
+        </script>
+        </tbody>
+        </table>
+</ul>   
 	<section style="width:70%; margin:auto;">
 		<canvas id="analisis"></canvas>
 	</section>
 	<script>
 var ctx = document.getElementById('analisis').getContext('2d');
-    {% for amenaza in amenaza_activos %}
-        console.log('{{amenaza.amenaza}}');
-    {%endfor%}
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -45,19 +91,19 @@ var myChart = new Chart(ctx, {
             '{{amenaza.amenaza}}',
         {%endfor%}],
         datasets: [{
-            label: 'Analisis',
+            label: 'Riesgo Actual',
             data: [{% for amenaza in amenaza_activos %}
                 {{amenaza.riesgo}},
             {%endfor%}],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
             ],
             fill:false,
+
+            pointBackgroundColor: [
+            {% for amenaza in amenaza_activos %}
+                'rgba(222, 99, 132, 1)',
+            {%endfor%}],
             lineTension:0,
             borderWidth: 1
         }]
