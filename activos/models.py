@@ -51,6 +51,7 @@ class Activo(models.Model):
 	def informe_url(self):
 	    if self.informe and hasattr(self.informe, 'url'):
 	        return self.informe.url
+from django.db.models.signals import post_save
 class Amenaza(models.Model):
 	id_Amenaza = models.AutoField(primary_key=True)
 	# Restriccion de Clave con Activos
@@ -61,8 +62,6 @@ class Amenaza(models.Model):
 	probabilidad = models.IntegerField(choices=valores,default=1)
 	impacto = models.IntegerField(choices=valores,default=1)
 	riesgo = models.IntegerField(blank=True, null=True)
-	# def save(self, *args, **kwargs):
-	# 	self.riesgo = self.probabilidad * self.impacto
 	
 	@property
 	def riesgo(self):
@@ -71,9 +70,13 @@ class Amenaza(models.Model):
 	def __str__(self):
 		return str(self.id_Amenaza)
 
+def save_Amenaza(sender, instance, **kwargs):
+	print('AGUARA TECH')
+
+post_save.connect(save_Amenaza, sender=Amenaza)
 class HistoricoAmenaza(models.Model):
 	# el ID me lo da Django
-	# Restriccion de Clave con Activos
+	# Restriccion de Clave con Amenaza (entidad debil)
 	id_f_amenaza = models.ForeignKey(Amenaza, on_delete=models.CASCADE)
 	nombre_amenaza  = models.CharField(max_length=100,blank=False, null=False)
 	valores = [(1,1),(2,2),(3,3)]

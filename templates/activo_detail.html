@@ -19,11 +19,11 @@
 		<p>{{activo.date}}</p>
 		<p><a href="{{activo.informe_url|default_if_none:'#'}}" class="btn btn-dark link-b" target="_blank">Ver informe <i class="far fa-file"></i></a></p>
 	</div>
+    <hr>
 	<div class="der">
 		<a href="{% url 'nueva_amenaza' activo.TAid %}" class="btn btn-success ag-mr-05 font-weight-bold"><i class="fas fa-plus-circle"></i> Añadir Amenaza</a>
         <button id="ag-bot" type="button" class="btn btn-info sep"><i class="far fa-eye-slash"></i> Ocultar Lista Amenazas</button>
-	</div>
-
+	</div> 
 <ul id="ag-tab">
     <table class="table table-hover table-striped tab_resp">
         <thead>
@@ -55,68 +55,54 @@
                 <td><a href="{% url 'eliminar_amenaza' amenaza.id_Amenaza %}" class="crojo icono"><i class="far fa-trash-alt"></i></a></td>
             </tr>
         {% endfor %}
-        <script>
-            let ag_bot = document.getElementById("ag-bot");
-            let ag_tab = document.getElementById("ag-tab");
-            cond = false;    
-            ag_bot.onclick = () => {
-                console.log(cond);
-                if (cond==true){
-                    ag_tab.style.display = "none";
-                    ag_bot.innerHTML = `<i class="far fa-eye"></i> Mostrar Lista de Amenazas`
-                    cond = false;
-                    console.log(cond);
-                } else{
-                    ag_tab.style.display = "block";
-                    ag_bot.innerHTML = `<i class="far fa-eye-slash"></i> Ocultar Lista Amenazas`
-                    cond = true;
-                    console.log(cond);
-                }
-            }
-            valorRiesgo();
-        </script>
+        
         </tbody>
         </table>
 </ul>   
 	<section style="width:70%; margin:auto;">
 		<canvas id="analisis"></canvas>
 	</section>
-	<script>
-var ctx = document.getElementById('analisis').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: [
-        {% for amenaza in amenaza_activos %}
-            '{{amenaza.amenaza}}',
-        {%endfor%}],
-        datasets: [{
-            label: 'Riesgo Actual',
-            data: [{% for amenaza in amenaza_activos %}
-                {{amenaza.riesgo}},
-            {%endfor%}],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-            ],
-            fill:false,
+    <script>
+            mostrarListaAmenazas();
+            valorRiesgo();
+            // Grafico
+            let ctx = document.getElementById('analisis').getContext('2d');
+            let myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [
+                    {% for amenaza in amenaza_activos %}
+                        '{{amenaza.amenaza}}',
+                    {%endfor%}],
+                    datasets: [{
+                        label: 'Riesgo Actual',
+                        data: [{% for amenaza in amenaza_activos %}
+                            {{amenaza.riesgo}},
+                        {%endfor%}],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                        ],
+                        fill:false,
 
-            pointBackgroundColor: [
-            {% for amenaza in amenaza_activos %}
-                'rgba(222, 99, 132, 1)',
-            {%endfor%}],
-            lineTension:0,
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
+                        pointBackgroundColor: [
+                        {% for amenaza in amenaza_activos %}
+                            'rgba(222, 99, 132, 1)',
+                        {%endfor%}],
+                        lineTension:0,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                min: 0, 
+                                max: 9,
+                            }
+                        }]
+                    }
                 }
-            }]
-        }
-    }
-});
-</script>
+            });
+        </script>
 {%endblock content%}

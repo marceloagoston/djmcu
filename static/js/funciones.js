@@ -23,3 +23,20 @@ function valorPrioridad(){
 		    }
 			}
 }
+
+function mostrarListaAmenazas(){
+	let ag_bot = document.getElementById("ag-bot");
+  	let ag_tab = document.getElementById("ag-tab");
+    cond = false;    
+    ag_bot.onclick = () => {
+    	if (cond==true){
+        	ag_tab.style.display = "none";
+            ag_bot.innerHTML = `<i class="far fa-eye"></i> Mostrar Lista de Amenazas`
+            cond = false;
+            } else{
+            	ag_tab.style.display = "block";
+                ag_bot.innerHTML = `<i class="far fa-eye-slash"></i> Ocultar Lista Amenazas`
+                cond = true;
+                }
+            }
+}
