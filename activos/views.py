@@ -3,7 +3,7 @@ from django.core.exceptions import PermissionDenied
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
-from .models import Activo, Amenaza
+from .models import Activo, Amenaza, HistoricoAmenaza
 from django.views import generic
 from .filters import ActivosFilter, AmenazasFilter
 from .forms import NuevaAmenazaForm
@@ -163,6 +163,20 @@ class AmenazasDeleteView(LoginRequiredMixin, DeleteView):
 	login_url = 'login'
 	# para que solo el autor pueda eliminar el activo
 	def dispatch(self, request, *args, **kwargs): # new
+		obj = self.get_object()
+		if obj.activo.resp_seguridad != self.request.user:
+			raise PermissionDenied
+		return super().dispatch(request, *args, **kwargs)
+
+
+# Historico
+
+class HistAmenazasListView(LoginRequiredMixin, DetailView):
+	model = HistoricoAmenaza
+	template_name = 'amenazas/hist_amenaza_detail.html'
+	context_object_name = 'amenazas'
+	login_url = 'login'
+	def dispatch(self, request, *args, **kwargs):
 		obj = self.get_object()
 		if obj.activo.resp_seguridad != self.request.user:
 			raise PermissionDenied
