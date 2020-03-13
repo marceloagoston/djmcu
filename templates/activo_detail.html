@@ -55,7 +55,16 @@
                 <td><a href="{% url 'eliminar_amenaza' amenaza.id_Amenaza %}" class="crojo icono"><i class="far fa-trash-alt"></i></a></td>
             </tr>
         {% endfor %}
-        
+        <h2>historico</h2>
+        <!-- Recorrer todo el historico de amenazas y encontrar coincidencias en el ID de HISTORICO_ULTIMOS -->
+        <!-- Falta agregar valor por defecto para los valores que no se encuentran en la lista -->
+        {% for i in historico_amenaza %}
+            {%for x in historico_ultimos%}
+                {% if i.id == x.id__max %}
+                    <p>ID Amenaza: {{i.id_f_amenaza}} Riesgo: {{i.riesgo}} id : {{i.id}}</p>
+                {% endif %}
+            {%endfor%}
+        {% endfor %}
         </tbody>
         </table>
 </ul>   
@@ -90,6 +99,20 @@
                         {%endfor%}],
                         lineTension:0,
                         borderWidth: 1
+                    },
+                    {
+                        label:'Antes del Analisis',
+                        data:[ {% for i in historico_amenaza %}
+                                {%for x in historico_ultimos%}
+                                    {% if i.id == x.id__max %}
+                                        {{i.riesgo}},
+                                    {% endif %}
+                                {%endfor%}
+                            {% endfor %}],
+                        lineTension:0,
+                        borderColor: 'rgb(255, 0, 0)',
+                        fill:false
+                
                     }]
                 },
                 options: {

@@ -11,6 +11,7 @@ from .forms import NuevaAmenazaForm
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.conf import settings
+from django.db.models import Max
 
 
 # esta clase esta al pedo me parece
@@ -54,6 +55,12 @@ class ActivosDetailView(LoginRequiredMixin, DetailView):
 	def get_context_data(self, **kwargs):
 		ctx = super().get_context_data(**kwargs)
 		ctx['amenaza_activos'] = Amenaza.objects.filter(activo=self.kwargs['pk'])
+		ctx['historico_amenaza'] = HistoricoAmenaza.objects.all()
+		ctx['historico_ultimos'] = HistoricoAmenaza.objects.values('id_f_amenaza').annotate(Max('id'))
+		# borrar
+		print('PRUEBA nueva')
+		print('-----------------------------')
+		print(ctx['historico_amenaza'])
 		return ctx
 
 	def dispatch(self, request, *args, **kwargs):
@@ -131,9 +138,13 @@ class AmenazasUpdateView(LoginRequiredMixin, UpdateView):
 	model = Amenaza
 	fields = ('amenaza','probabilidad','impacto',)
 	template_name = 'amenazas/editaramenaza.html'
-	success_url = reverse_lazy('lista_amenazas')
+	success_url = reverse_lazy('detalle_activo')
 	context_object_name = 'amenaza'
 	login_url = 'login'
+
+	def get_success_url(self):
+	 	amen_act=Amenaza.objects.filter(id_Amenaza=self.kwargs['pk']).get()
+	 	return reverse_lazy('detalle_activo',args={amen_act.activo.pk})
 
 # para que solo el autor pueda editar el activo
 	def dispatch(self, request, *args, **kwargs):
@@ -172,12 +183,13 @@ class AmenazasDeleteView(LoginRequiredMixin, DeleteView):
 # Historico
 
 class HistAmenazasListView(LoginRequiredMixin, DetailView):
-	model = HistoricoAmenaza
-	template_name = 'amenazas/hist_amenaza_detail.html'
-	context_object_name = 'amenazas'
-	login_url = 'login'
-	def dispatch(self, request, *args, **kwargs):
-		obj = self.get_object()
-		if obj.activo.resp_seguridad != self.request.user:
-			raise PermissionDenied
-		return super().dispatch(request, *args, **kwargs)
+	pass
+	# model = HistoricoAmenaza
+	# template_name = 'amenazas/hist_amenaza_detail.html'
+	# context_object_name = 'amenazas'
+	# login_url = 'login'
+	# def dispatch(self, request, *args, **kwargs):
+	# 	obj = self.get_object()
+	# 	if obj.activo.resp_seguridad != self.request.user:
+	# 		raise PermissionDenied
+	# 	return super().dispatch(request, *args, **kwargs)

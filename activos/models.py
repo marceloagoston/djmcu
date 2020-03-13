@@ -70,7 +70,8 @@ class Amenaza(models.Model):
 
 	def __str__(self):
 		return str(self.id_Amenaza)
-
+		
+# Trigger que guarda Historicos justo antes de ejecutarse el update() de la Amenaza
 def save_Amenaza(sender, instance, **kwargs):
 	aux = HistoricoAmenaza()
 	aux.id_f_amenaza = instance
