@@ -101,7 +101,7 @@
                         borderWidth: 1
                     },
                     {
-                        label:'Antes del Analisis',
+                        label:'Riesgo Anterior',
                         data:[ {% for i in historico_amenaza %}
                                 {%for x in historico_ultimos%}
                                     {% if i.id == x.id__max %}
@@ -110,7 +110,7 @@
                                 {%endfor%}
                             {% endfor %}],
                         lineTension:0,
-                        borderColor: 'rgb(255, 0, 0)',
+                        borderColor: 'rgba(94, 115, 255,1)',
                         fill:false
                 
                     }]

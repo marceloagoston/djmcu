@@ -2,6 +2,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
+from django.db.models.signals import post_save, pre_save, post_init
 
 class Activo(models.Model):
 	#ID del activo
@@ -51,7 +52,6 @@ class Activo(models.Model):
 	def informe_url(self):
 	    if self.informe and hasattr(self.informe, 'url'):
 	        return self.informe.url
-from django.db.models.signals import post_save, pre_save
 
 class Amenaza(models.Model):
 	id_Amenaza = models.AutoField(primary_key=True)
@@ -80,7 +80,17 @@ def save_Amenaza(sender, instance, **kwargs):
 	aux.impacto = instance.impacto
 	aux.save()
 
-pre_save.connect(save_Amenaza, sender=Amenaza)
+# def iniciarlizar(sender, instance, **kwargs):
+# 	aux = HistoricoAmenaza()
+# 	aux.id_f_amenaza = instance
+# 	aux.nombre_amenaza = instance.amenaza
+# 	aux.probabilidad = 0
+# 	aux.impacto = 0
+# 	aux.save()
+
+post_save.connect(save_Amenaza, sender=Amenaza)
+# post_init.connect(iniciarlizar, sender=Amenaza)
+
 # post_save.connect(save_Amenaza, sender=Amenaza)
 class HistoricoAmenaza(models.Model):
 	# el ID me lo da Django

@@ -55,8 +55,8 @@ class ActivosDetailView(LoginRequiredMixin, DetailView):
 	def get_context_data(self, **kwargs):
 		ctx = super().get_context_data(**kwargs)
 		ctx['amenaza_activos'] = Amenaza.objects.filter(activo=self.kwargs['pk'])
-		ctx['historico_amenaza'] = HistoricoAmenaza.objects.all()
-		ctx['historico_ultimos'] = HistoricoAmenaza.objects.values('id_f_amenaza').annotate(Max('id'))
+		ctx['historico_amenaza'] = HistoricoAmenaza.objects.all().order_by('id_f_amenaza')
+		ctx['historico_ultimos'] = HistoricoAmenaza.objects.values('id_f_amenaza').annotate(Max('id')).order_by('id_f_amenaza')
 		# borrar
 		print('PRUEBA nueva')
 		print('-----------------------------')
