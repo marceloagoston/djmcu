@@ -84,10 +84,21 @@ WSGI_APPLICATION = 'djmcu.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'frmwolma',
+        'HOST' : 'tuffi.db.elephantsql.com',
+        'USER' : 'frmwolma',
+        'PASSWORD' : 'Vztp5j0YuqyJMRTh3aHUjeQpo9eHdWdQ' ,
+        'PORT' : '5432'
     }
 }
 
@@ -153,5 +164,10 @@ LOGOUT_REDIRECT_URL = 'home'
 # porqueusobootstrap
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #email
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'agwallpy@gmail.com'
+EMAIL_HOST_PASSWORD = 'paloma227'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False

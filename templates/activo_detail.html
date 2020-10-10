@@ -83,7 +83,23 @@
                     {% for amenaza in amenaza_activos %}
                         '{{amenaza.amenaza}}',
                     {%endfor%}],
-                    datasets: [{
+                    datasets: [
+                    {
+                        label:'Riesgo Anterior',
+                        data:[ {% for i in historico_amenaza %}
+                                {%for x in historico_ultimos%}
+                                    {% if i.id == x.id__max %}
+                                        {{i.riesgo}},
+                                    {% endif %}
+                                {%endfor%}
+                            {% endfor %}],
+                        lineTension:0,
+                        borderColor: 'rgba(160, 160, 160,1)',
+                        fill:false,
+                        borderWidth: 1
+                
+                    },
+                    {
                         label: 'Riesgo Actual',
                         data: [{% for amenaza in amenaza_activos %}
                             {{amenaza.riesgo}},
@@ -97,23 +113,9 @@
                         {% for amenaza in amenaza_activos %}
                             'rgba(222, 99, 132, 1)',
                         {%endfor%}],
-                        lineTension:0,
-                        borderWidth: 1
-                    },
-                    {
-                        label:'Riesgo Anterior',
-                        data:[ {% for i in historico_amenaza %}
-                                {%for x in historico_ultimos%}
-                                    {% if i.id == x.id__max %}
-                                        {{i.riesgo}},
-                                    {% endif %}
-                                {%endfor%}
-                            {% endfor %}],
-                        lineTension:0,
-                        borderColor: 'rgba(94, 115, 255,1)',
-                        fill:false
-                
-                    }]
+                        lineTension:0
+                    }
+                    ]
                 },
                 options: {
                     scales: {

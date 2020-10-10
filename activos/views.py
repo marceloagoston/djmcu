@@ -3,7 +3,7 @@ from django.core.exceptions import PermissionDenied
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
-from .models import Activo, Amenaza, HistoricoAmenaza
+from .models import Activos, Amenazas, HistoricoAmenazas
 from django.views import generic
 from .filters import ActivosFilter, AmenazasFilter
 from .forms import NuevaAmenazaForm
@@ -16,14 +16,14 @@ from django.db.models import Max
 
 # esta clase esta al pedo me parece
 class TipoActivosListView(LoginRequiredMixin ,ListView):
-	model = Activo
+	model = Activos
 	template_name = 'categorias.html'
 	context_object_name = 'activos'
 	login_url = 'login'
 
 
 class ActivosListView(LoginRequiredMixin, ListView):
-	model = Activo
+	model = Activos
 	template_name = 'activos_detail.html'
 	context_object_name = 'activos'
 	login_url = 'login'
@@ -34,10 +34,10 @@ class ActivosListView(LoginRequiredMixin, ListView):
 		return context
 
 	def get_queryset(self):
-		return Activo.objects.filter(resp_seguridad=self.request.user.id)
+		return Activos.objects.filter(resp_seguridad=self.request.user.id)
 # usamos mixin para evitar que un usuario no logueado acceda a la vista.
 class ActivoCreateView(LoginRequiredMixin, CreateView):
-	model = Activo
+	model = Activos
 	template_name = 'nuevoact.html'
 	fields = ('tipoactivo', 'nombre','descripcion','propietario','responsable','ubicacion','valor','informe',)
 	login_url = 'login'
@@ -47,7 +47,7 @@ class ActivoCreateView(LoginRequiredMixin, CreateView):
 		return super().form_valid(form)
 
 class ActivosDetailView(LoginRequiredMixin, DetailView):
-	model = Activo
+	model = Activos
 	template_name = 'activo_detail.html'
 	context_object_name = 'activo'
 	login_url = 'login'
@@ -70,7 +70,7 @@ class ActivosDetailView(LoginRequiredMixin, DetailView):
 		return super().dispatch(request, *args, **kwargs)
 
 class ActivosUpdateView(LoginRequiredMixin, UpdateView):
-	model = Activo
+	model = Activos
 	fields = ('tipoactivo', 'nombre','descripcion','propietario','ubicacion','valor','informe',)
 	template_name = 'editaractivo.html'
 	context_object_name = 'activo'
@@ -93,7 +93,7 @@ class ActivosUpdateView(LoginRequiredMixin, UpdateView):
 
 # para que solo el autor pueda editar el activo
 class ActivosDeleteView(LoginRequiredMixin, DeleteView):
-	model = Activo
+	model = Activos
 	template_name = 'eliminaractivo.html'
 	success_url = reverse_lazy('lista_activos')
 	context_object_name = 'activo'
@@ -108,7 +108,7 @@ class ActivosDeleteView(LoginRequiredMixin, DeleteView):
 # Vistas Amenazas
 
 class AmenazasListView(LoginRequiredMixin, ListView):
-	model = Amenaza
+	model = Amenazas
 	template_name = 'amenazas/amenazas_detail.html'
 	context_object_name = 'amenazas'
 	login_url = 'login'
@@ -118,10 +118,10 @@ class AmenazasListView(LoginRequiredMixin, ListView):
 		return context
 
 	def get_queryset(self):
-		return  Amenaza.objects.filter(activo__resp_seguridad=self.request.user.id)
+		return  Amenazas.objects.filter(activo__resp_seguridad=self.request.user.id)
 
 class AmenazasCreateView(LoginRequiredMixin, CreateView):
-	model = Amenaza
+	model = Amenazas
 	form_class = NuevaAmenazaForm
 	template_name = 'amenazas/nueva_amenaza.html'
 	context_object_name = 'amen'
@@ -131,11 +131,11 @@ class AmenazasCreateView(LoginRequiredMixin, CreateView):
 	def form_valid(self, form):
 		form.instance.resp_seguridad = self.request.user
 		f = form.save(commit=False)
-		f.activo = Activo.objects.get(TAid=self.kwargs['pk'])
+		f.activo = Activos.objects.get(TAid=self.kwargs['pk'])
 		return super(AmenazasCreateView, self).form_valid(form)
 
 class AmenazasUpdateView(LoginRequiredMixin, UpdateView):
-	model = Amenaza
+	model = Amenazas
 	fields = ('amenaza','probabilidad','impacto',)
 	template_name = 'amenazas/editaramenaza.html'
 	success_url = reverse_lazy('detalle_activo')
@@ -143,7 +143,7 @@ class AmenazasUpdateView(LoginRequiredMixin, UpdateView):
 	login_url = 'login'
 
 	def get_success_url(self):
-	 	amen_act=Amenaza.objects.filter(id_Amenaza=self.kwargs['pk']).get()
+	 	amen_act=Amenazas.objects.filter(id_Amenaza=self.kwargs['pk']).get()
 	 	return reverse_lazy('detalle_activo',args={amen_act.activo.pk})
 
 # para que solo el autor pueda editar el activo
@@ -156,7 +156,7 @@ class AmenazasUpdateView(LoginRequiredMixin, UpdateView):
 # DETAIL
 
 class AmenazasDetailView(LoginRequiredMixin, DetailView):
-	model = Amenaza
+	model = Amenazas
 	template_name = 'amenazas/amenaza_detail.html'
 	context_object_name = 'amenazas'
 	login_url = 'login'
@@ -167,7 +167,7 @@ class AmenazasDetailView(LoginRequiredMixin, DetailView):
 		return super().dispatch(request, *args, **kwargs)
 
 class AmenazasDeleteView(LoginRequiredMixin, DeleteView):
-	model = Amenaza
+	model = Amenazas
 	template_name = 'amenazas/eliminar_amenaza.html'
 	success_url = reverse_lazy('lista_amenazas')
 	context_object_name = 'amenaza'

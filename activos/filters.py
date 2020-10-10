@@ -1,5 +1,5 @@
 import django_filters
-from .models import Activo, Amenaza
+from .models import Activos, Amenazas
 
 class ActivosFilter(django_filters.FilterSet):
 
@@ -25,7 +25,7 @@ class ActivosFilter(django_filters.FilterSet):
 	antiguedad = django_filters.ChoiceFilter(label='Ordenar: ', method='filter_by_order', choices=seleccion2)
 
 	class Meta:
-		model = Activo
+		model = Activos
 		fields =('tipoactivo','valor',)
 
 	def filter_by_order(self, queryset, name, value):
@@ -41,6 +41,6 @@ class AmenazasFilter(django_filters.FilterSet):
 	activo__TAid = django_filters.NumberFilter(label='ID Activo')
 
 	class Meta:
-		model = Amenaza
+		model = Amenazas
 		fields =() #aca puedo meterle campos del modelo
 

@@ -89,11 +89,12 @@ a{
 .filtro{
 	display: flex;
 	justify-content: space-around;
-	width: 50%;
+	width: 70%;
 	align-items: center;
 }
 	.btn-search{
 		height: calc(1.5em + .75rem + 2px);
+		margin-top: 2%;
 	}
 	/*.form-group {
     margin-bottom: 1rem;
@@ -154,6 +155,13 @@ a{
 	padding-top: 5%;
 }
 
+.ag-mt-10{
+	margin-top: 10%;
+}
+.ag-mb-5{
+	margin-bottom: 5%;
+}
+
 /*Responsivo*/
 @media screen and (max-width: 800px) {
   .foot {
@@ -186,6 +194,18 @@ a{
     flex-direction: column;
 	background-color:#111;
 }
+
+.filtro{
+	width: 100%;
+}
+
+.form-group{
+	margin-right: 2%;
+}
+
+.btn-search{
+		margin-top: 3%;
+	}
 
 }
 
